@@ -25,8 +25,7 @@ public class Product {
   @Column(name = "created_at")
   private Timestamp createdTime;
 
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "review_id", referencedColumnName = "id")
+  @OneToOne(mappedBy = "product")
   private Review review;
 
 }

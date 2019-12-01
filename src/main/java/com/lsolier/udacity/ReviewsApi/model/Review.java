@@ -1,5 +1,8 @@
 package com.lsolier.udacity.ReviewsApi.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,7 +22,7 @@ public class Review {
   private Integer id;
 
   @Column(name = "description")
-  private String productName;
+  private String description;
 
   @Column(name = "created_at")
   private Timestamp createdTime;
@@ -27,7 +30,8 @@ public class Review {
   @OneToMany(mappedBy="review")
   private Set<Comment> comments;
 
-  @OneToOne(mappedBy = "review")
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "product_id", referencedColumnName = "id")
   private Product product;
 
 }

@@ -1,0 +1,3 @@
+insert into review (description, product_id) values('El llamativo diseño de Nissan Kicks empieza con sus característicos faros LED en forma de búmeran, parrilla V-motion y continúa con el elegante diseño de su techo flotante.', 1);
+insert into review (description, product_id) values('La Nueva Nissan Qashqai combina una impresionante y atractiva imagen con una nueva aerodinámica altamente eficiente para que disfrutes al máximo de la conducción y domines la ciudad.', 2);
+insert into review (description, product_id) values('La nueva Nissan Pathfinder cuenta con el sistema Intelligent 4x4-i, ideal para cualquier temporada o pavimento.', 3);
