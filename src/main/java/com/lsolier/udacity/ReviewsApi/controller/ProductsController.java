@@ -1,11 +1,16 @@
 package com.lsolier.udacity.ReviewsApi.controller;
 
+import com.lsolier.udacity.ReviewsApi.model.Comment;
+import com.lsolier.udacity.ReviewsApi.model.Product;
+import com.lsolier.udacity.ReviewsApi.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpServerErrorException;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Spring REST controller for working with product entity.
@@ -14,7 +19,12 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductsController {
 
-    // TODO: Wire JPA repositories here
+    private ProductRepository productRepository;
+
+    @Autowired
+    public ProductsController(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     /**
      * Creates a product.
@@ -24,8 +34,8 @@ public class ProductsController {
      */
     @RequestMapping(value = "/", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void createProduct() {
-        throw new HttpServerErrorException(HttpStatus.NOT_IMPLEMENTED);
+    public void createProduct(@RequestBody Product product) {
+        productRepository.save(product);
     }
 
     /**
@@ -35,8 +45,10 @@ public class ProductsController {
      * @return The product if found, or a 404 not found.
      */
     @RequestMapping(value = "/{id}")
-    public ResponseEntity<?> findById(@PathVariable("id") Integer id) {
-        throw new HttpServerErrorException(HttpStatus.NOT_IMPLEMENTED);
+    public ResponseEntity<Product> findById(@PathVariable("id") Integer id) {
+        Optional<Product> productOptional = productRepository.findById(id);
+        Product product = productOptional.orElseThrow(() -> new HttpServerErrorException(HttpStatus.NOT_FOUND));
+        return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
     /**
@@ -45,7 +57,9 @@ public class ProductsController {
      * @return The list of products.
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public List<?> listProducts() {
-        throw new HttpServerErrorException(HttpStatus.NOT_IMPLEMENTED);
+    public List<Product> listProducts() {
+        List<Product> productList;
+        productList = productRepository.findAll();
+        return productList;
     }
 }
