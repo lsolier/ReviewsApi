@@ -1,6 +1,7 @@
 package com.lsolier.udacity.ReviewsApi.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,6 +27,7 @@ public class Product {
   private Timestamp createdTime;
 
   @OneToOne(mappedBy = "product")
+  @JsonIgnore
   private Review review;
 
 }

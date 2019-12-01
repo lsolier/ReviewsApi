@@ -27,7 +27,7 @@ public class Comment {
   @Column(name = "created_at")
   private Timestamp createdTime;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name="review_id", nullable=false)
   private Review review;
 
