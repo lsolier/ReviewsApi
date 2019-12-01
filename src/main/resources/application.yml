@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: ReviewsApi
+  datasource:
+    url: "jdbc:mysql://localhost:3306/JDNDC3"
+    username: apjdnddes
+    password: apjdnddes
+  jpa:
+    show-sql: true
+    generate-ddl : false
+    hibernate:
+      ddl-auto : none
+
+server:
+  port: 9001
+
