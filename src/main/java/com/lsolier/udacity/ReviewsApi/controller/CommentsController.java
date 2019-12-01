@@ -63,7 +63,13 @@ public class CommentsController {
      * @param reviewId The id of the review.
      */
     @RequestMapping(value = "/reviews/{reviewId}", method = RequestMethod.GET)
-    public List<?> listCommentsForReview(@PathVariable("reviewId") Integer reviewId) {
-        throw new HttpServerErrorException(HttpStatus.NOT_IMPLEMENTED);
+    public List<Comment> listCommentsForReview(@PathVariable("reviewId") Integer reviewId) {
+        Optional<Review> reviewOptional = reviewRepository.findById(reviewId);
+        Review review = reviewOptional.orElseThrow(
+            () -> new HttpServerErrorException(HttpStatus.NOT_FOUND));
+
+        List<Comment> commentList;
+        commentList = commentRepository.findAllByReview(review);
+        return commentList;
     }
 }

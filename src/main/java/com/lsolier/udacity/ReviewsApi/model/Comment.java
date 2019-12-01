@@ -1,8 +1,6 @@
 package com.lsolier.udacity.ReviewsApi.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,6 +27,7 @@ public class Comment {
 
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name="review_id", nullable=false)
+  @JsonIgnore
   private Review review;
 
 }
