@@ -32,8 +32,9 @@ public class Review {
   @JsonIgnore
   private Set<Comment> comments;
 
-  @OneToOne(fetch = FetchType.EAGER)
-  @JoinColumn(name = "product_id", referencedColumnName = "id")
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "product_id",  nullable=false)
+  @JsonIgnore
   private Product product;
 
 }

@@ -1,6 +1,5 @@
 package com.lsolier.udacity.ReviewsApi.controller;
 
-import com.lsolier.udacity.ReviewsApi.model.Comment;
 import com.lsolier.udacity.ReviewsApi.model.Product;
 import com.lsolier.udacity.ReviewsApi.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;

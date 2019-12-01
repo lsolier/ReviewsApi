@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -25,8 +26,8 @@ public class Product {
   @Column(name = "created_at")
   private Timestamp createdTime;
 
-  @OneToOne(mappedBy = "product")
+  @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
   @JsonIgnore
-  private Review review;
+  private Set<Review> review;
 
 }
